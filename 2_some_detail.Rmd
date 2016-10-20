@@ -1,0 +1,125 @@
+---
+title: "**OptiClust: Improved method for assigning amplicon-based sequence data to operational taxonomic units**"
+bibliography: references.bib
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+csl: msystems.csl
+fontsize: 11pt
+geometry: margin=1.0in
+---
+
+
+```{r knitr_settings, eval=TRUE, echo=FALSE, cache=FALSE}
+opts_chunk$set("tidy" = TRUE)
+opts_chunk$set("echo" = FALSE)
+opts_chunk$set("eval" = TRUE)
+opts_chunk$set("warning" = FALSE)
+opts_chunk$set("cache" = FALSE)
+
+inline_hook <- function(x){
+	print(x)
+	if(is.numeric(x)){
+		if(abs(x - round(x)) < .Machine$double.eps^0.5){
+			paste(format(x,big.mark=',', digits=0, scientific=FALSE))
+		} else {
+			paste(format(x,big.mark=',', digits=2, nsmall=2, scientific=FALSE))
+		}
+
+	} else {
+    	paste(x)      
+	}
+}
+knitr::knit_hooks$set(inline=inline_hook)
+```
+
+\begin{center}
+\vspace{25mm}
+Sarah L. Westcott and Patrick D. Schloss${^\dagger}$
+
+\vspace{30mm}
+
+$\dagger$ To whom correspondence should be addressed: pschloss@umich.edu
+
+Department of Microbiology and Immunology, University of Michigan, Ann Arbor, MI
+\end{center}
+
+
+\newpage
+\linenumbers
+
+
+## Abstract
+
+**Keywords:**
+
+\newpage
+
+## Introduction
+* Amplicon-based sequencing has provided incredible insights into Earth's microbial biodiversity.
+* Numerous methods have been proposed
+* Needed an objective criteria to evaluate the various methods methods
+* Average neighbor is consistently the best method, but others including USEARCH and VSEARCH resulted in comparable results
+* Difficulty with amount of memory and time required to complete average neighbor algorithm is a significant hurdle to completion of the method.
+* Instead of retrospectively evaluating methods for their ability to correctly assign sequences we sought to develop a method that would prospectively assign sequences to OTUs to optimize classification metrics.
+
+\newpage
+
+## Results
+
+***OptiClust algorithm.***
+
+
+***OptiClust stopping criteria***
+
+
+***OptiClust-generated OTUs are as stable as those from other algorithms***
+
+
+***Optimization of clustering using composite metrics significantly improves clustering quality.***
+
+
+***Optimization-based clustering is faster and uses less memory than current methods.***
+
+
+***Time and memory requirements for optimization-based clustering scale quadratically.***
+
+
+***Cluster splitting heuristic generates OTUs that are as good as non-split approach.***
+
+\newpage
+
+## Discussion
+
+Script taken from https://twitter.com/HANDEvo/status/611653491669495808
+
+Paragraph 1. Restate most important contributions
+
+Paragraph 2-5. Make a point form of 4 things you showed in a paper, give a paragraph to each. Distill each finidng, explain what it means to field, put in context with literature, discuss any weaknesses, connect to next finding
+
+Paragraph 6. Based on our model, we propose the following...
+
+
+\newpage
+
+## Methods
+***Sequence data and processing steps.***
+
+***Implementation of clustering algorithms.***
+
+***Benchmarking.***
+
+***Data and code availability.***
+
+\newpage
+
+## References
+
+\newpage
+
+## Tables
+
+\newpage
+
+## Figures

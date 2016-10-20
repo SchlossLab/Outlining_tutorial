@@ -1,0 +1,148 @@
+---
+title: "**OptiClust: Improved method for assigning amplicon-based sequence data to operational taxonomic units**"
+bibliography: references.bib
+output:
+  pdf_document:
+    includes:
+      in_header: header.tex
+csl: msystems.csl
+fontsize: 11pt
+geometry: margin=1.0in
+---
+
+
+```{r knitr_settings, eval=TRUE, echo=FALSE, cache=FALSE}
+opts_chunk$set("tidy" = TRUE)
+opts_chunk$set("echo" = FALSE)
+opts_chunk$set("eval" = TRUE)
+opts_chunk$set("warning" = FALSE)
+opts_chunk$set("cache" = FALSE)
+
+inline_hook <- function(x){
+	print(x)
+	if(is.numeric(x)){
+		if(abs(x - round(x)) < .Machine$double.eps^0.5){
+			paste(format(x,big.mark=',', digits=0, scientific=FALSE))
+		} else {
+			paste(format(x,big.mark=',', digits=2, nsmall=2, scientific=FALSE))
+		}
+
+	} else {
+    	paste(x)      
+	}
+}
+knitr::knit_hooks$set(inline=inline_hook)
+```
+
+\begin{center}
+\vspace{25mm}
+Sarah L. Westcott and Patrick D. Schloss${^\dagger}$
+
+\vspace{30mm}
+
+$\dagger$ To whom correspondence should be addressed: pschloss@umich.edu
+
+Department of Microbiology and Immunology, University of Michigan, Ann Arbor, MI
+\end{center}
+
+
+\newpage
+\linenumbers
+
+## Abstract
+
+**Keywords:**
+
+\newpage
+
+## Introduction
+* Amplicon-based sequencing has provided incredible insights into Earth's microbial biodiversity.
+* Numerous methods have been proposed
+* Needed an objective criteria to evaluate the various methods methods
+* Average neighbor is consistently the best method, but others including USEARCH and VSEARCH resulted in comparable results
+* Difficulty with amount of memory and time required to complete average neighbor algorithm is a significant hurdle to completion of the method.
+* Instead of retrospectively evaluating methods for their ability to correctly assign sequences we sought to develop a method that would prospectively assign sequences to OTUs to optimize classification metrics.
+
+\newpage
+
+## Results
+
+***OptiClust algorithm (Supplemental Text 1).***
+Want to describe how the algorithm works in a clear manner. Really important to get this right. Perhaps a figure or detailed worked example as a supplement?
+
+
+*Hmmmm... need somewhere to introduce datasets*
+
+***OptiClust starting state (Figure 1).***
+Does it matter if the algorithm starts with all sequences in separate OTUs or a single OTU?
+
+
+***OptiClust stopping criteria (Figure 1).***
+Want to show that is it safe to stop clustering if the optimization metric hasn't converged? Suspect that it is ok to stop at a delta of 0.0001, but the methods are so fast that it doesn't really matter. May be more relevant with even larger datasets than we've used here.
+
+
+~~***Optimization of clustering using composite metrics significantly improves clustering quality (Figure 1).***~~
+Want to compare clusters formed using accuracy to MCC, perhaps put in context of furthest neighbor and nearest neighbor which minimize the number of false positives (FN) and false negatives(NN). Really want to drive towards MCC since it uses all four confusion matrix metrics. Now that I think about it, this section might get scrapped since I really want a metric that has all four parameters in it.
+
+
+***Optimization-based clustering is faster and uses less memory than current methods (Figure 1).***
+Will compare OptiClust performance (MCC, Speed, NumOTUs?) to other methods for multiple datasets
+
+
+***OptiClust-generated OTUs are as stable as those from other algorithms  (Figure 1).***
+Revisit work from previous papers looking at the coefficient of variation of the various methods. Need to show that running the algorithm 10 times yields very similar results that are as reproducible or better than other methods.
+
+
+***Time and memory requirements for optimization-based clustering scale quadratically (Figure 2).***
+Describe how the amount of time and memory required to complete OptiClust scales with number of sequences for the four large datasets.
+
+
+***Cluster splitting heuristic generates OTUs that are as good as non-split approach (Figure 3).***
+Assess clustering quality when using cluster.split for OptiClust, VSEARCH, and Average Neighbor. Quality seems to decline as splits get finer, so it doesn't seem worth it. Perhaps relevant for much larger datasets.
+
+
+
+\newpage
+
+## Discussion
+
+Script taken from https://twitter.com/HANDEvo/status/611653491669495808
+
+Paragraph 1. Restate most important contributions
+
+Paragraph 2-5. Make a point form of 4 things you showed in a paper, give a paragraph to each. Distill each finidng, explain what it means to field, put in context with literature, discuss any weaknesses, connect to next finding
+
+Paragraph 6. Based on our model, we propose the following...
+
+
+\newpage
+
+
+## Methods
+***Sequence data and processing steps.***
+
+***Implementation of clustering algorithms.***
+
+***Benchmarking.***
+
+***Data and code availability.***
+
+\newpage
+
+## References
+
+\newpage
+
+## Tables
+
+\newpage
+
+## Figures
+
+**Figure 1. OptiClust performance.**
+Plot of MCC (A) and execution times (B) for the different starting conditions
+(C) A Number of steps required to converge with different thresholds
+
+**Figure 2.** Demonstration of how execution time (A) and memory usage (B) scale with the number of unique sequences for each clustering algorithm. For the purposes of this analysis, clustering was limited to 48 GB of RAM and 50 hours of execution time.
+
+**Figure 3.** Comparison of cluster.split and cluster for average neighbor, VSEARCH-based abundance-based greedy clustering, and OptiClust.
